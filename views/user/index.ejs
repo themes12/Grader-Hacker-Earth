@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <title><%= title %></title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../stylesheets/user/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="../stylesheets/user/css/colors/blue.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .fa-times-circle {
+            color: red;
+        }
+        .fa-check-circle {
+            color: green;
+        }
+    </style>
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <div id="main-wrapper">
+        <!-- Topbar header - style you can find in pages.scss -->
+        <header class="topbar">
+            <%- include include/navbar %>
+        </header>
+        <!-- End Topbar header -->
+        <%- include include/leftside %>
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                    </div>
+                    <!--<div class="col-md-6 col-4 align-self-center">
+                        <a href="https://wrappixel.com/templates/monsteradmin/" class="btn pull-right hidden-sm-down btn-success"> Upgrade to Pro</a>
+                    </div>-->
+                </div>
+                <!-- Row -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Daily Sales</h4>
+                                <div class="text-right">
+                                    <h2 class="font-light m-b-0"><!--<i class="ti-arrow-up text-success"></i>-->$120</h2>
+                                    <span class="text-muted">Todays Income</span>
+                                </div>
+                                <span class="text-success">80%</span>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 80%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Weekly Sales</h4>
+                                <div class="text-right">
+                                    <h2 class="font-light m-b-0"><!--<i class="ti-arrow-up text-info"></i>-->$5,000</h2>
+                                    <span class="text-muted">Todays Income</span>
+                                </div>
+                                <span class="text-info">30%</span>
+                                <div class="progress">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 30%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- Row -->
+                <!-- Row -->
+                <!--<div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Revenue Statistics</h4>
+                                <div class="flot-chart">
+                                    <div class="flot-chart-content" id="flot-line-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- Row -->
+                <!-- Row -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <h3 class="card-title">Challenges</h3>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>โจทย์</th>
+                                                <th>สถานะ</th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% var i=1; %>
+                                            <% questions.forEach((ques, index) => { %>
+                                            <tr>
+                                                <td id="id"><%= i %></td>
+                                                <td><%= ques.problem %></td>
+                                                <td><i class="fa fa-times-circle"> ลองใหม่</i></td>
+                                                <td><a type="button" class="btn btn-success" href="/home/coding/<%= ques.id %>">Select</a></td>
+                                            </tr>
+                                            <!--<tr>
+                                                <td>2</td>
+                                                <td>Deshmukh</td>
+                                                <td><i class="fa fa-check-circle"> สำเร็จ</i></td>
+                                                <td><button type="button" class="btn btn-success">Select</button></td>
+                                            </tr> -->
+                                            <% i++; }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%- include include/footer %>
+        </div>
+    </div>
+</body>
+<script src="../assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="../assets/plugins/bootstrap/js/tether.min.js"></script>
+<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="../javascripts/user/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="../javascripts/user/waves.js"></script>
+<!--Menu sidebar -->
+<script src="../javascripts/user/sidebarmenu.js"></script>
+<!--stickey kit -->
+<script src="../assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<!--Custom JavaScript -->
+<script src="../javascripts/user/custom.min.js"></script>
+<!-- ============================================================== -->
+<!-- This page plugins -->
+<!-- ============================================================== -->
+<!-- Flot Charts JavaScript -->
+<script src="../assets/plugins/flot/jquery.flot.js"></script>
+<script src="../assets/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+<script src="../javascripts/user/flot-data.js"></script>
+<!-- ============================================================== -->
+<!-- Style switcher -->
+<!-- ============================================================== -->
+<script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+</html>

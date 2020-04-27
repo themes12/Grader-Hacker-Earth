@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <title><%= title %></title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../../stylesheets/user/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="../../stylesheets/user/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="../../stylesheets/user/terminal/sandbox.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <link rel="stylesheet" href="../../codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="../../codemirror/theme/monokai.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css" integrity="sha256-yXe5CFTKO0Rj8tiAHQf9O6d68th79HCS5RsdMXSBIZk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/themes/default.min.css" integrity="sha256-mXMPaPcmYb2o3Ase54rbHne52ALoalaUOdqokpSRiX8=" crossorigin="anonymous" />
+    <style>
+        .code-input {
+            display: block;
+            padding: 9.5px;
+            margin: 0 0 10px;
+            font-size: 13;
+            line-height: 1.42;
+            word-break: break-all;
+            word-wrap: break-word;
+            color: grey;
+            background-color: #f5F5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .code-output {
+            display: block;
+            padding: 9.5px;
+            margin: 0 0 10px;
+            font-size: 13;
+            line-height: 1.42;
+            word-break: break-all;
+            word-wrap: break-word;
+            color: grey;
+            background-color: #f5F5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="fix-header card-no-border">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <%- include include/navbar %>
+        </header>
+        <%- include include/leftside %>
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- Bread crumb and right sidebar toggle -->
+                <div class="row page-titles">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <h3 class="text-themecolor m-b-0 m-t-0">Coding</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                            <li class="breadcrumb-item active">Coding</li>
+                        </ol>
+                    </div>
+                    <!--<div class="col-md-6 col-4 align-self-center">
+                        <a href="https://wrappixel.com/templates/monsteradmin/" class="btn pull-right hidden-sm-down btn-success"> Upgrade to Pro</a>
+                    </div>-->
+                </div>
+                <!-- Start Page Content -->
+                <div class="row flex-column-reverse flex-md-row">
+                    <div class="col-sm-8">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Code</h4>
+                                <div class="text-left" id="code-editor" style="height: 490px;"></div>
+                                <div class="text-center" style="margin-top: 20px;">
+                                    <button type="button" class="btn btn-success btn-lg" id="code-button">Run <i class="fa fa-play"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <% questionDetails.forEach((quesDetails, index) => { %>
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Problem</h4>
+                                <div class="text-left">
+                                    <p id="code-problem"><%= quesDetails.problem %></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Input</h4>
+                                <div class="text-center">
+                                    <pre><code class="code-input nohighlight"><%= quesDetails.input %></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Output</h4>
+                                <div class="text-center" id="code-output">
+                                    <pre><code class="code-output nohighlight"><%= quesDetails.output %></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <%- include include/footer %>
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="../../codemirror/lib/codemirror.js"></script>
+    <script src="../../codemirror/mode/clike/clike.js"></script>
+    <script src="../../codemirror/mode/python/python.js"></script>
+    <script src="../../assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="../../assets/plugins/bootstrap/js/tether.min.js"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="../../javascripts/user/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="../../javascripts/user/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="../../javascripts/user/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="../../assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="../../javascripts/user/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <script src="../../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script>
+        var editor = CodeMirror(document.getElementById("code-editor"), {
+            mode: "python",
+            theme: "monokai",
+            lineNumbers: true
+        });
+        editor.setSize("","490");
+    </script>
+    <script src="../../javascripts/user/code.js"></script>
+</body>
+
+</html>
