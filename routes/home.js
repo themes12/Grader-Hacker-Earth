@@ -37,9 +37,9 @@ router.get('/coding/:id', function(req, res, next) {
         });
     });
 });
-
+//use your custom API KEY
 var hackerEarth=new hackerEarth(
-    '4bdc4c7a21c5e7d36c86ff3e94667e29890bfc68',  //Your Client Secret Key here this is mandatory
+    '',  //Your Client Secret Key here this is mandatory 
     ''  //mode sync=1 or async(optional)=0 or null async is by default and preferred for nodeJS
 );
 
@@ -93,26 +93,6 @@ router.post('/run', function(req, res) {
                     }      
                 }
             });
-           /* var code = req.body.code;
-            var program = {
-                script : code,
-                language: "python3",
-                versionIndex: "0",
-                clientId: "e7610e570f20bd84fdb017b8820740d5",
-                clientSecret: "66f2a661d950ef507b890e044de491e2befbc81166ed72afd3812a04341b86c6"
-            };
-            request({
-                url: 'https://api.jdoodle.com/v1/execute',
-                method: "POST",
-                json: program
-            },
-            function (error, response, body) {
-                //console.log('error:', error);
-                //console.log('statusCode:', response && response.statusCode);
-                //console.log('body:', body.output);
-                var responseHtml = {notifyType: 'success', headerText: 'Success!', outputText: body.output};
-                res.end(JSON.stringify(responseHtml));
-            });*/
         });
     }else{
         console.log("Failed");
